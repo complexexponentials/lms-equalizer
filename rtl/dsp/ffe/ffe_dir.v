@@ -61,16 +61,6 @@ module ffe_dir#(
     assign sums_l2[1] = sums_l1[2] + {prods[6][19],prods[6]};
 
     assign dout_int = sums_l2[0] + sums_l2[1];
-    assign o_data = dout_int[15:15-(OUT_BW-1)]; //8:0
-
-// `ifdef COCOTB_SIM
-//    initial begin
-//       $dumpfile("./sim_build/ffe_dir.vcd");
-//       $dumpvars(0, prods[0], prods[1], prods[2], prods[3], prods[4], prods[5], prods[6]);
-//       $dumpvars(0, sums_l1[0], sums_l1[1], sums_l1[2]);
-//       $dumpvars(0, sums_l2[0], sums_l2[1]);
-//       $dumpvars(0, ffe_dir);
-//    end
-// `endif
+    assign o_data = dout_int[15:15-(OUT_BW-1)]; //S(9,7)
 
 endmodule

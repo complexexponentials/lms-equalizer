@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module ffe
+module ffe_trans
   #(
     parameter DATA_BW = 11,  // Data bit width
     parameter COEF_BW = 9,   // Coefficients bit width
@@ -62,15 +62,5 @@ module ffe
 
    //assign dout_int = prods_cut[0] + sum_reg[0];
    assign o_data = sum_next[0][15:7]; //8:0
-
-// `ifdef COCOTB_SIM
-//    initial begin
-//       $dumpfile("./sim_build/ffe.vcd");
-//       $dumpvars(0, ffe);
-//       $dumpvars(0, prods[0], prods[1], prods[2], prods[3], prods[4], prods[5], prods[6]);
-//       $dumpvars(0, sum_reg[0], sum_reg[1], sum_reg[2], sum_reg[3], sum_reg[4], sum_reg[5]);
-//       $dumpvars(0, sum_next[0], sum_next[1], sum_next[2], sum_next[3], sum_next[4], sum_next[5]);
-//    end
-// `endif
 
 endmodule
