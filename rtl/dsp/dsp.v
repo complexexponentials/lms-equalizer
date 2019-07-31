@@ -52,8 +52,8 @@ ffe_inst(
 
 );
 
-assign slice = ffe_out[8] ? 9'b010000000 : 9'b110000000; // S(9,7) : 1,-1
-assign error = ffe_out + slice;
+assign slice = ffe_out[8] ? 9'b110000000 : 9'b010000000; // S(9,7) : 1,-1
+assign error = slice - ffe_out;
 
 lms #(
     .DATA_BW(11),  // Data bit width
@@ -87,10 +87,19 @@ bram bram_inst
 );
 
 `ifdef COCOTB_SIM
-     initial begin
-         $dumpfile("./sim_build/dsp.vcd");
-         $dumpvars(0, dsp);
-     end
+    initial begin
+        $dumpfile("./sim_build/dsp.vcd");
+        $dumpvars(0, ffe_inst.coefs[0], ffe_inst.coefs[1], ffe_inst.coefs[2],ffe_inst.coefs[3],
+                  ffe_inst.coefs[4], ffe_inst.coefs[5], ffe_inst.coefs[6]);        
+        $dumpvars(0, lms_inst.c_reg[0], lms_inst.c_reg[1], lms_inst.c_reg[2],lms_inst.c_reg[3],
+                  lms_inst.c_reg[4], lms_inst.c_reg[5], lms_inst.c_reg[6]);
+        $dumpvars(0, lms_inst.c_next[0], lms_inst.c_next[1], lms_inst.c_next[2],lms_inst.c_next[3],
+                  lms_inst.c_next[4], lms_inst.c_next[5], lms_inst.c_next[6]);
+        $dumpvars(0, lms_inst.correction_term[0], lms_inst.correction_term[1], lms_inst.correction_term[2],
+                  lms_inst.correction_term[3], lms_inst.correction_term[4], lms_inst.correction_term[5],
+                  lms_inst.correction_term[6]);
+        $dumpvars(0, dsp);
+    end
 `endif
 
 endmodule
