@@ -7,7 +7,7 @@
 -- Autor         : Ariel Pola
 -------------------------------------------------------------------------------*/
 
-`include "/home/edgardo/Nube/MEGA/Facultad/DDA/TPfinal/DDAfinal/rtl/top_board/fpga_files.v"
+//`include "/home/edgardo/Nube/MEGA/Facultad/DDA/TPfinal/DDAfinal/rtl/top_board/fpga_files.v"
 
 module fpga
   (
