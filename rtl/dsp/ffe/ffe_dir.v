@@ -1,8 +1,8 @@
 `timescale 1ns / 1ps
 
 module ffe_dir#(
-    parameter DATA_BW = 11, // Data bit width
-    parameter OUT_BW = 9,   // Ouput bit width
+    parameter IN_BW = 11,   // Input bit width
+    parameter OUT_BW = 9,   // Output bit width
     parameter COEF_BW = 9,  // Coefficients bit width
     parameter N_COEF = 7    // Number of coefficients
     )
@@ -10,13 +10,13 @@ module ffe_dir#(
     input                        i_clk,
     input                        i_rst,
     input                        i_en,
-    input signed [DATA_BW-1:0]   i_data,
+    input signed  [IN_BW-1:0]   i_data,
     output signed [OUT_BW-1:0]   o_data,
 
     input [(COEF_BW*N_COEF)-1:0] i_coefs   // Coefficients bus: CN, CN-1, ... , C1, C0
     );
 
-    reg signed  [DATA_BW-1:0]   data_dl [0:N_COEF-1];
+    reg signed  [IN_BW-1:0]   data_dl [0:N_COEF-1];
     wire signed [COEF_BW-1:0]   coefs   [0:N_COEF-1];
     wire signed [19:0]          prods   [0:N_COEF-1];
     wire signed [22:0]          dout_int;
@@ -52,6 +52,7 @@ module ffe_dir#(
             assign prods[k] = coefs[k] * data_dl[k];
     endgenerate
 
+    /* Adder tree */
     generate
         for (k=0; k<(N_COEF/2); k=k+1)
             assign sums_l1[k] = prods[(2*k)]+prods[(2*k)+1];
