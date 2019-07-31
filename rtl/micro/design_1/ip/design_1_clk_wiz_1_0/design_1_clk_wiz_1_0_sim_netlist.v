@@ -1,48 +1,48 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-// Date        : Wed Jul 17 15:04:14 2019
-// Host        : e-ThinkPad running 64-bit Ubuntu 19.04
+// Date        : Wed Jul 31 13:00:02 2019
+// Host        : edgardo-work running 64-bit Ubuntu 19.04
 // Command     : write_verilog -force -mode funcsim
-//               /home/edgardo/Nube/MEGA/Facultad/DDA/TPfinal/DDAfinal/rtl/micro/design_1/ip/design_1_clk_wiz_1_0/design_1_clk_wiz_1_0_sim_netlist.v
+//               /home/edgardo/repos/complexexponentials/lms-equalizer/rtl/micro/design_1/ip/design_1_clk_wiz_1_0/design_1_clk_wiz_1_0_sim_netlist.v
 // Design      : design_1_clk_wiz_1_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
-// Device      : xc7a35ticsg324-1L
+// Device      : xc7z010clg400-1
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
 (* NotValidForBitStream *)
 module design_1_clk_wiz_1_0
    (clk_out1,
-    resetn,
+    reset,
     locked,
     clk_in1);
   output clk_out1;
-  input resetn;
+  input reset;
   output locked;
   input clk_in1;
 
   (* IBUF_LOW_PWR *) wire clk_in1;
   wire clk_out1;
   wire locked;
-  wire resetn;
+  wire reset;
 
   design_1_clk_wiz_1_0_design_1_clk_wiz_1_0_clk_wiz inst
        (.clk_in1(clk_in1),
         .clk_out1(clk_out1),
         .locked(locked),
-        .resetn(resetn));
+        .reset(reset));
 endmodule
 
 (* ORIG_REF_NAME = "design_1_clk_wiz_1_0_clk_wiz" *) 
 module design_1_clk_wiz_1_0_design_1_clk_wiz_1_0_clk_wiz
    (clk_out1,
-    resetn,
+    reset,
     locked,
     clk_in1);
   output clk_out1;
-  input resetn;
+  input reset;
   output locked;
   input clk_in1;
 
@@ -53,8 +53,7 @@ module design_1_clk_wiz_1_0_design_1_clk_wiz_1_0_clk_wiz
   wire clkfbout_buf_design_1_clk_wiz_1_0;
   wire clkfbout_design_1_clk_wiz_1_0;
   wire locked;
-  wire reset_high;
-  wire resetn;
+  wire reset;
   wire NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED;
@@ -92,10 +91,10 @@ module design_1_clk_wiz_1_0_design_1_clk_wiz_1_0_clk_wiz
   (* BOX_TYPE = "PRIMITIVE" *) 
   MMCME2_ADV #(
     .BANDWIDTH("OPTIMIZED"),
-    .CLKFBOUT_MULT_F(10.000000),
+    .CLKFBOUT_MULT_F(8.000000),
     .CLKFBOUT_PHASE(0.000000),
     .CLKFBOUT_USE_FINE_PS("FALSE"),
-    .CLKIN1_PERIOD(10.000000),
+    .CLKIN1_PERIOD(8.000000),
     .CLKIN2_PERIOD(0.000000),
     .CLKOUT0_DIVIDE_F(10.000000),
     .CLKOUT0_DUTY_CYCLE(0.500000),
@@ -172,12 +171,7 @@ module design_1_clk_wiz_1_0_design_1_clk_wiz_1_0_clk_wiz
         .PSEN(1'b0),
         .PSINCDEC(1'b0),
         .PWRDWN(1'b0),
-        .RST(reset_high));
-  LUT1 #(
-    .INIT(2'h1)) 
-    mmcm_adv_inst_i_1
-       (.I0(resetn),
-        .O(reset_high));
+        .RST(reset));
 endmodule
 `ifndef GLBL
 `define GLBL

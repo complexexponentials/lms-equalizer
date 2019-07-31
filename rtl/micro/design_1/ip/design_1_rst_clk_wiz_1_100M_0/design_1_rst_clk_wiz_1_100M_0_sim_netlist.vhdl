@@ -1,14 +1,14 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
--- Date        : Wed Jul 17 15:05:16 2019
--- Host        : e-ThinkPad running 64-bit Ubuntu 19.04
+-- Date        : Wed Jul 31 12:53:02 2019
+-- Host        : edgardo-work running 64-bit Ubuntu 19.04
 -- Command     : write_vhdl -force -mode funcsim
---               /home/edgardo/Nube/MEGA/Facultad/DDA/TPfinal/DDAfinal/rtl/micro/design_1/ip/design_1_rst_clk_wiz_1_100M_0/design_1_rst_clk_wiz_1_100M_0_sim_netlist.vhdl
+--               /home/edgardo/repos/complexexponentials/lms-equalizer/rtl/micro/design_1/ip/design_1_rst_clk_wiz_1_100M_0/design_1_rst_clk_wiz_1_100M_0_sim_netlist.vhdl
 -- Design      : design_1_rst_clk_wiz_1_100M_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xc7a35ticsg324-1L
+-- Device      : xc7z010clg400-1
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -915,7 +915,7 @@ entity design_1_rst_clk_wiz_1_100M_0_proc_sys_reset is
   attribute C_EXT_RST_WIDTH : integer;
   attribute C_EXT_RST_WIDTH of design_1_rst_clk_wiz_1_100M_0_proc_sys_reset : entity is 4;
   attribute C_FAMILY : string;
-  attribute C_FAMILY of design_1_rst_clk_wiz_1_100M_0_proc_sys_reset : entity is "artix7";
+  attribute C_FAMILY of design_1_rst_clk_wiz_1_100M_0_proc_sys_reset : entity is "zynq";
   attribute C_NUM_BUS_RST : integer;
   attribute C_NUM_BUS_RST of design_1_rst_clk_wiz_1_100M_0_proc_sys_reset : entity is 1;
   attribute C_NUM_INTERCONNECT_ARESETN : integer;
@@ -1069,7 +1069,7 @@ architecture STRUCTURE of design_1_rst_clk_wiz_1_100M_0 is
   attribute C_EXT_RST_WIDTH : integer;
   attribute C_EXT_RST_WIDTH of U0 : label is 4;
   attribute C_FAMILY : string;
-  attribute C_FAMILY of U0 : label is "artix7";
+  attribute C_FAMILY of U0 : label is "zynq";
   attribute C_NUM_BUS_RST : integer;
   attribute C_NUM_BUS_RST of U0 : label is 1;
   attribute C_NUM_INTERCONNECT_ARESETN : integer;

@@ -217,7 +217,7 @@ ARCHITECTURE design_1_dlmb_bram_if_cntlr_0_arch OF design_1_dlmb_bram_if_cntlr_0
 BEGIN
   U0 : lmb_bram_if_cntlr
     GENERIC MAP (
-      C_FAMILY => "artix7",
+      C_FAMILY => "zynq",
       C_HIGHADDR => X"0000000000007FFF",
       C_BASEADDR => X"0000000000000000",
       C_NUM_LMB => 1,

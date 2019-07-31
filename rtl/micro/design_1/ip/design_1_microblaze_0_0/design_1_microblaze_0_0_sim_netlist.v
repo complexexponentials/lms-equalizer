@@ -1,14 +1,14 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-// Date        : Wed Jul 17 15:05:49 2019
-// Host        : e-ThinkPad running 64-bit Ubuntu 19.04
+// Date        : Wed Jul 31 12:52:16 2019
+// Host        : edgardo-work running 64-bit Ubuntu 19.04
 // Command     : write_verilog -force -mode funcsim
-//               /home/edgardo/Nube/MEGA/Facultad/DDA/TPfinal/DDAfinal/rtl/micro/design_1/ip/design_1_microblaze_0_0/design_1_microblaze_0_0_sim_netlist.v
+//               /home/edgardo/repos/complexexponentials/lms-equalizer/rtl/micro/design_1/ip/design_1_microblaze_0_0/design_1_microblaze_0_0_sim_netlist.v
 // Design      : design_1_microblaze_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
-// Device      : xc7a35ticsg324-1L
+// Device      : xc7z010clg400-1
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
@@ -456,7 +456,7 @@ module design_1_microblaze_0_0
   (* C_ECC_USE_CE_EXCEPTION = "0" *) 
   (* C_EDGE_IS_POSITIVE = "1" *) 
   (* C_ENDIANNESS = "1" *) 
-  (* C_FAMILY = "artix7" *) 
+  (* C_FAMILY = "zynq" *) 
   (* C_FAULT_TOLERANT = "0" *) 
   (* C_FPU_EXCEPTION = "0" *) 
   (* C_FREQ = "100000000" *) 
@@ -41843,7 +41843,7 @@ endmodule
 (* C_DEBUG_LATENCY_COUNTERS = "1" *) (* C_DEBUG_PROFILE_SIZE = "0" *) (* C_DEBUG_TRACE_ASYNC_RESET = "0" *) 
 (* C_DEBUG_TRACE_SIZE = "8192" *) (* C_DIV_ZERO_EXCEPTION = "0" *) (* C_DYNAMIC_BUS_SIZING = "0" *) 
 (* C_D_AXI = "1" *) (* C_D_LMB = "1" *) (* C_ECC_USE_CE_EXCEPTION = "0" *) 
-(* C_EDGE_IS_POSITIVE = "1" *) (* C_ENDIANNESS = "1" *) (* C_FAMILY = "artix7" *) 
+(* C_EDGE_IS_POSITIVE = "1" *) (* C_ENDIANNESS = "1" *) (* C_FAMILY = "zynq" *) 
 (* C_FAULT_TOLERANT = "0" *) (* C_FPU_EXCEPTION = "0" *) (* C_FREQ = "100000000" *) 
 (* C_FSL_EXCEPTION = "0" *) (* C_FSL_LINKS = "0" *) (* C_IADDR_SIZE = "32" *) 
 (* C_ICACHE_ALWAYS_USED = "0" *) (* C_ICACHE_BASEADDR = "64'b0000000000000000000000000000000000000000000000000000000000000000" *) (* C_ICACHE_DATA_WIDTH = "0" *) 

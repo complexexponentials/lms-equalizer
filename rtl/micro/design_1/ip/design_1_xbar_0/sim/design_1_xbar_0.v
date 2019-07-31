@@ -187,7 +187,7 @@ P 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUT
 output wire [3 : 0] m_axi_rready;
 
   axi_crossbar_v2_1_20_axi_crossbar #(
-    .C_FAMILY("artix7"),
+    .C_FAMILY("zynq"),
     .C_NUM_SLAVE_SLOTS(1),
     .C_NUM_MASTER_SLOTS(4),
     .C_AXI_ID_WIDTH(1),

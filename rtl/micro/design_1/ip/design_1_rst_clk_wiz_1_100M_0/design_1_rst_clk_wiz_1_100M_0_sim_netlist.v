@@ -1,14 +1,14 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-// Date        : Wed Jul 17 15:05:16 2019
-// Host        : e-ThinkPad running 64-bit Ubuntu 19.04
+// Date        : Wed Jul 31 12:53:02 2019
+// Host        : edgardo-work running 64-bit Ubuntu 19.04
 // Command     : write_verilog -force -mode funcsim
-//               /home/edgardo/Nube/MEGA/Facultad/DDA/TPfinal/DDAfinal/rtl/micro/design_1/ip/design_1_rst_clk_wiz_1_100M_0/design_1_rst_clk_wiz_1_100M_0_sim_netlist.v
+//               /home/edgardo/repos/complexexponentials/lms-equalizer/rtl/micro/design_1/ip/design_1_rst_clk_wiz_1_100M_0/design_1_rst_clk_wiz_1_100M_0_sim_netlist.v
 // Design      : design_1_rst_clk_wiz_1_100M_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
-// Device      : xc7a35ticsg324-1L
+// Device      : xc7z010clg400-1
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
@@ -51,7 +51,7 @@ module design_1_rst_clk_wiz_1_100M_0
   (* C_AUX_RST_WIDTH = "4" *) 
   (* C_EXT_RESET_HIGH = "1'b0" *) 
   (* C_EXT_RST_WIDTH = "4" *) 
-  (* C_FAMILY = "artix7" *) 
+  (* C_FAMILY = "zynq" *) 
   (* C_NUM_BUS_RST = "1" *) 
   (* C_NUM_INTERCONNECT_ARESETN = "1" *) 
   (* C_NUM_PERP_ARESETN = "1" *) 
@@ -398,7 +398,7 @@ module design_1_rst_clk_wiz_1_100M_0_lpf
 endmodule
 
 (* C_AUX_RESET_HIGH = "1'b0" *) (* C_AUX_RST_WIDTH = "4" *) (* C_EXT_RESET_HIGH = "1'b0" *) 
-(* C_EXT_RST_WIDTH = "4" *) (* C_FAMILY = "artix7" *) (* C_NUM_BUS_RST = "1" *) 
+(* C_EXT_RST_WIDTH = "4" *) (* C_FAMILY = "zynq" *) (* C_NUM_BUS_RST = "1" *) 
 (* C_NUM_INTERCONNECT_ARESETN = "1" *) (* C_NUM_PERP_ARESETN = "1" *) (* C_NUM_PERP_RST = "1" *) 
 (* ORIG_REF_NAME = "proc_sys_reset" *) 
 module design_1_rst_clk_wiz_1_100M_0_proc_sys_reset

@@ -155,7 +155,7 @@ ARCHITECTURE design_1_axi_uartlite_0_0_arch OF design_1_axi_uartlite_0_0 IS
 BEGIN
   U0 : axi_uartlite
     GENERIC MAP (
-      C_FAMILY => "artix7",
+      C_FAMILY => "zynq",
       C_S_AXI_ACLK_FREQ_HZ => 100000000,
       C_S_AXI_ADDR_WIDTH => 4,
       C_S_AXI_DATA_WIDTH => 32,

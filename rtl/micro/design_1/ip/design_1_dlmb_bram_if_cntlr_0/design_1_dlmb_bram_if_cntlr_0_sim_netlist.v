@@ -1,14 +1,14 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-// Date        : Wed Jul 17 15:07:07 2019
-// Host        : e-ThinkPad running 64-bit Ubuntu 19.04
+// Date        : Wed Jul 31 12:54:32 2019
+// Host        : edgardo-work running 64-bit Ubuntu 19.04
 // Command     : write_verilog -force -mode funcsim
-//               /home/edgardo/Nube/MEGA/Facultad/DDA/TPfinal/DDAfinal/rtl/micro/design_1/ip/design_1_dlmb_bram_if_cntlr_0/design_1_dlmb_bram_if_cntlr_0_sim_netlist.v
+//               /home/edgardo/repos/complexexponentials/lms-equalizer/rtl/micro/design_1/ip/design_1_dlmb_bram_if_cntlr_0/design_1_dlmb_bram_if_cntlr_0_sim_netlist.v
 // Design      : design_1_dlmb_bram_if_cntlr_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
-// Device      : xc7a35ticsg324-1L
+// Device      : xc7z010clg400-1
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
@@ -111,7 +111,7 @@ module design_1_dlmb_bram_if_cntlr_0
   (* C_ECC_ONOFF_REGISTER = "0" *) 
   (* C_ECC_ONOFF_RESET_VALUE = "1" *) 
   (* C_ECC_STATUS_REGISTERS = "0" *) 
-  (* C_FAMILY = "artix7" *) 
+  (* C_FAMILY = "zynq" *) 
   (* C_FAULT_INJECT = "0" *) 
   (* C_HIGHADDR = "64'b0000000000000000000000000000000000000000000000000111111111111111" *) 
   (* C_INTERCONNECT = "0" *) 
@@ -208,7 +208,7 @@ endmodule
 
 (* C_BASEADDR = "64'b0000000000000000000000000000000000000000000000000000000000000000" *) (* C_BRAM_AWIDTH = "32" *) (* C_CE_COUNTER_WIDTH = "0" *) 
 (* C_CE_FAILING_REGISTERS = "0" *) (* C_ECC = "0" *) (* C_ECC_ONOFF_REGISTER = "0" *) 
-(* C_ECC_ONOFF_RESET_VALUE = "1" *) (* C_ECC_STATUS_REGISTERS = "0" *) (* C_FAMILY = "artix7" *) 
+(* C_ECC_ONOFF_RESET_VALUE = "1" *) (* C_ECC_STATUS_REGISTERS = "0" *) (* C_FAMILY = "zynq" *) 
 (* C_FAULT_INJECT = "0" *) (* C_HIGHADDR = "64'b0000000000000000000000000000000000000000000000000111111111111111" *) (* C_INTERCONNECT = "0" *) 
 (* C_LMB_AWIDTH = "32" *) (* C_LMB_DWIDTH = "32" *) (* C_MASK = "64'b0000000000000000000000000000000001000000000000000000000000000000" *) 
 (* C_MASK1 = "64'b0000000000000000000000000000000000000000100000000000000000000000" *) (* C_MASK2 = "64'b0000000000000000000000000000000000000000100000000000000000000000" *) (* C_MASK3 = "64'b0000000000000000000000000000000000000000100000000000000000000000" *) 

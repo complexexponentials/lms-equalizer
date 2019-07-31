@@ -102,8 +102,8 @@ input wire [31 : 0] dinb;
 output wire [31 : 0] doutb;
 
   blk_mem_gen_v8_4_3 #(
-    .C_FAMILY("artix7"),
-    .C_XDEVICEFAMILY("artix7"),
+    .C_FAMILY("zynq"),
+    .C_XDEVICEFAMILY("zynq"),
     .C_ELABORATION_DIR("./"),
     .C_INTERFACE_TYPE(0),
     .C_AXI_TYPE(1),
@@ -176,7 +176,7 @@ output wire [31 : 0] doutb;
     .C_DISABLE_WARN_BHV_RANGE(0),
     .C_COUNT_36K_BRAM("8"),
     .C_COUNT_18K_BRAM("0"),
-    .C_EST_POWER_SUMMARY("Estimated Power for IP     :     19.3686 mW")
+    .C_EST_POWER_SUMMARY("Estimated Power for IP     :     20.388 mW")
   ) inst (
     .clka(clka),
     .rsta(rsta),

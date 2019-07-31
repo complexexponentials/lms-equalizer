@@ -806,7 +806,7 @@ BEGIN
       C_LOCKSTEP_SLAVE => 0,
       C_LOCKSTEP_MASTER => 0,
       C_ENDIANNESS => 1,
-      C_FAMILY => "artix7",
+      C_FAMILY => "zynq",
       C_DATA_SIZE => 32,
       C_LMB_DATA_SIZE => 32,
       C_INSTR_SIZE => 32,

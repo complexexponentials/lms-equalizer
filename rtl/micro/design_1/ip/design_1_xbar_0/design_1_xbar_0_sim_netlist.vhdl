@@ -1,14 +1,14 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
--- Date        : Wed Jul 17 15:09:04 2019
--- Host        : e-ThinkPad running 64-bit Ubuntu 19.04
+-- Date        : Wed Jul 31 12:56:55 2019
+-- Host        : edgardo-work running 64-bit Ubuntu 19.04
 -- Command     : write_vhdl -force -mode funcsim
---               /home/edgardo/Nube/MEGA/Facultad/DDA/TPfinal/DDAfinal/rtl/micro/design_1/ip/design_1_xbar_0/design_1_xbar_0_sim_netlist.vhdl
+--               /home/edgardo/repos/complexexponentials/lms-equalizer/rtl/micro/design_1/ip/design_1_xbar_0/design_1_xbar_0_sim_netlist.vhdl
 -- Design      : design_1_xbar_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xc7a35ticsg324-1L
+-- Device      : xc7z010clg400-1
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -3542,7 +3542,7 @@ entity design_1_xbar_0_axi_crossbar_v2_1_20_axi_crossbar is
   attribute C_DEBUG : integer;
   attribute C_DEBUG of design_1_xbar_0_axi_crossbar_v2_1_20_axi_crossbar : entity is 1;
   attribute C_FAMILY : string;
-  attribute C_FAMILY of design_1_xbar_0_axi_crossbar_v2_1_20_axi_crossbar : entity is "artix7";
+  attribute C_FAMILY of design_1_xbar_0_axi_crossbar_v2_1_20_axi_crossbar : entity is "zynq";
   attribute C_M_AXI_ADDR_WIDTH : string;
   attribute C_M_AXI_ADDR_WIDTH of design_1_xbar_0_axi_crossbar_v2_1_20_axi_crossbar : entity is "128'b00000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000";
   attribute C_M_AXI_BASE_ADDR : string;
@@ -3592,7 +3592,7 @@ entity design_1_xbar_0_axi_crossbar_v2_1_20_axi_crossbar is
   attribute P_AXILITE_SIZE : string;
   attribute P_AXILITE_SIZE of design_1_xbar_0_axi_crossbar_v2_1_20_axi_crossbar : entity is "3'b010";
   attribute P_FAMILY : string;
-  attribute P_FAMILY of design_1_xbar_0_axi_crossbar_v2_1_20_axi_crossbar : entity is "artix7";
+  attribute P_FAMILY of design_1_xbar_0_axi_crossbar_v2_1_20_axi_crossbar : entity is "zynq";
   attribute P_INCR : string;
   attribute P_INCR of design_1_xbar_0_axi_crossbar_v2_1_20_axi_crossbar : entity is "2'b01";
   attribute P_LEN : integer;
@@ -4092,7 +4092,7 @@ architecture STRUCTURE of design_1_xbar_0 is
   attribute C_DEBUG : integer;
   attribute C_DEBUG of inst : label is 1;
   attribute C_FAMILY : string;
-  attribute C_FAMILY of inst : label is "artix7";
+  attribute C_FAMILY of inst : label is "zynq";
   attribute C_M_AXI_ADDR_WIDTH : string;
   attribute C_M_AXI_ADDR_WIDTH of inst : label is "128'b00000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000";
   attribute C_M_AXI_BASE_ADDR : string;
@@ -4139,7 +4139,7 @@ architecture STRUCTURE of design_1_xbar_0 is
   attribute P_AXILITE_SIZE : string;
   attribute P_AXILITE_SIZE of inst : label is "3'b010";
   attribute P_FAMILY : string;
-  attribute P_FAMILY of inst : label is "artix7";
+  attribute P_FAMILY of inst : label is "zynq";
   attribute P_INCR : string;
   attribute P_INCR of inst : label is "2'b01";
   attribute P_LEN : integer;

@@ -122,7 +122,7 @@ ARCHITECTURE design_1_rst_clk_wiz_1_100M_0_arch OF design_1_rst_clk_wiz_1_100M_0
 BEGIN
   U0 : proc_sys_reset
     GENERIC MAP (
-      C_FAMILY => "artix7",
+      C_FAMILY => "zynq",
       C_EXT_RST_WIDTH => 4,
       C_AUX_RST_WIDTH => 4,
       C_EXT_RESET_HIGH => '0',

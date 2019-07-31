@@ -1,14 +1,14 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
--- Date        : Wed Jul 17 15:09:45 2019
--- Host        : e-ThinkPad running 64-bit Ubuntu 19.04
+-- Date        : Wed Jul 31 12:57:45 2019
+-- Host        : edgardo-work running 64-bit Ubuntu 19.04
 -- Command     : write_vhdl -force -mode funcsim
---               /home/edgardo/Nube/MEGA/Facultad/DDA/TPfinal/DDAfinal/rtl/micro/design_1/ip/design_1_lmb_bram_0/design_1_lmb_bram_0_sim_netlist.vhdl
+--               /home/edgardo/repos/complexexponentials/lms-equalizer/rtl/micro/design_1/ip/design_1_lmb_bram_0/design_1_lmb_bram_0_sim_netlist.vhdl
 -- Design      : design_1_lmb_bram_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xc7a35ticsg324-1L
+-- Device      : xc7z010clg400-1
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -2893,9 +2893,9 @@ entity design_1_lmb_bram_0_blk_mem_gen_v8_4_3 is
   attribute C_EN_SLEEP_PIN : integer;
   attribute C_EN_SLEEP_PIN of design_1_lmb_bram_0_blk_mem_gen_v8_4_3 : entity is 0;
   attribute C_EST_POWER_SUMMARY : string;
-  attribute C_EST_POWER_SUMMARY of design_1_lmb_bram_0_blk_mem_gen_v8_4_3 : entity is "Estimated Power for IP     :     19.3686 mW";
+  attribute C_EST_POWER_SUMMARY of design_1_lmb_bram_0_blk_mem_gen_v8_4_3 : entity is "Estimated Power for IP     :     20.388 mW";
   attribute C_FAMILY : string;
-  attribute C_FAMILY of design_1_lmb_bram_0_blk_mem_gen_v8_4_3 : entity is "artix7";
+  attribute C_FAMILY of design_1_lmb_bram_0_blk_mem_gen_v8_4_3 : entity is "zynq";
   attribute C_HAS_AXI_ID : integer;
   attribute C_HAS_AXI_ID of design_1_lmb_bram_0_blk_mem_gen_v8_4_3 : entity is 0;
   attribute C_HAS_ENA : integer;
@@ -2995,7 +2995,7 @@ entity design_1_lmb_bram_0_blk_mem_gen_v8_4_3 is
   attribute C_WRITE_WIDTH_B : integer;
   attribute C_WRITE_WIDTH_B of design_1_lmb_bram_0_blk_mem_gen_v8_4_3 : entity is 32;
   attribute C_XDEVICEFAMILY : string;
-  attribute C_XDEVICEFAMILY of design_1_lmb_bram_0_blk_mem_gen_v8_4_3 : entity is "artix7";
+  attribute C_XDEVICEFAMILY of design_1_lmb_bram_0_blk_mem_gen_v8_4_3 : entity is "zynq";
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of design_1_lmb_bram_0_blk_mem_gen_v8_4_3 : entity is "blk_mem_gen_v8_4_3";
   attribute downgradeipidentifiedwarnings : string;
@@ -3245,9 +3245,9 @@ architecture STRUCTURE of design_1_lmb_bram_0 is
   attribute C_EN_SLEEP_PIN : integer;
   attribute C_EN_SLEEP_PIN of U0 : label is 0;
   attribute C_EST_POWER_SUMMARY : string;
-  attribute C_EST_POWER_SUMMARY of U0 : label is "Estimated Power for IP     :     19.3686 mW";
+  attribute C_EST_POWER_SUMMARY of U0 : label is "Estimated Power for IP     :     20.388 mW";
   attribute C_FAMILY : string;
-  attribute C_FAMILY of U0 : label is "artix7";
+  attribute C_FAMILY of U0 : label is "zynq";
   attribute C_HAS_AXI_ID : integer;
   attribute C_HAS_AXI_ID of U0 : label is 0;
   attribute C_HAS_ENA : integer;
@@ -3347,7 +3347,7 @@ architecture STRUCTURE of design_1_lmb_bram_0 is
   attribute C_WRITE_WIDTH_B : integer;
   attribute C_WRITE_WIDTH_B of U0 : label is 32;
   attribute C_XDEVICEFAMILY : string;
-  attribute C_XDEVICEFAMILY of U0 : label is "artix7";
+  attribute C_XDEVICEFAMILY of U0 : label is "zynq";
   attribute downgradeipidentifiedwarnings of U0 : label is "yes";
   attribute x_interface_info : string;
   attribute x_interface_info of clka : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA CLK";

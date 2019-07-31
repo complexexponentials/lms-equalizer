@@ -1645,7 +1645,7 @@ ARCHITECTURE design_1_mdm_1_0_arch OF design_1_mdm_1_0 IS
 BEGIN
   U0 : MDM
     GENERIC MAP (
-      C_FAMILY => "artix7",
+      C_FAMILY => "zynq",
       C_JTAG_CHAIN => 2,
       C_USE_BSCAN => 0,
       C_BSCANID => 76547328,

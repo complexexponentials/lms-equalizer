@@ -56,12 +56,12 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// clk_out1___100.000______0.000______50.0______130.958_____98.575
+// clk_out1___100.000______0.000______50.0______124.615_____96.948
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
 //----------------------------------------------------------------------------
-// __primary_________100.000____________0.010
+// __primary_________125.000____________0.010
 
 `timescale 1ps/1ps
 
@@ -71,7 +71,7 @@ module design_1_clk_wiz_1_0_clk_wiz
   // Clock out ports
   output        clk_out1,
   // Status and control signals
-  input         resetn,
+  input         reset,
   output        locked,
   input         clk_in1
  );
@@ -128,14 +128,14 @@ wire clk_in2_design_1_clk_wiz_1_0;
     .COMPENSATION         ("ZHOLD"),
     .STARTUP_WAIT         ("FALSE"),
     .DIVCLK_DIVIDE        (1),
-    .CLKFBOUT_MULT_F      (10.000),
+    .CLKFBOUT_MULT_F      (8.000),
     .CLKFBOUT_PHASE       (0.000),
     .CLKFBOUT_USE_FINE_PS ("FALSE"),
     .CLKOUT0_DIVIDE_F     (10.000),
     .CLKOUT0_PHASE        (0.000),
     .CLKOUT0_DUTY_CYCLE   (0.500),
     .CLKOUT0_USE_FINE_PS  ("FALSE"),
-    .CLKIN1_PERIOD        (10.000))
+    .CLKIN1_PERIOD        (8.000))
   mmcm_adv_inst
     // Output clocks
    (
@@ -177,7 +177,7 @@ wire clk_in2_design_1_clk_wiz_1_0;
     .CLKFBSTOPPED        (clkfbstopped_unused),
     .PWRDWN              (1'b0),
     .RST                 (reset_high));
-  assign reset_high = ~resetn; 
+  assign reset_high = reset; 
 
   assign locked = locked_int;
 // Clock Monitor clock assigning

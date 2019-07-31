@@ -7,20 +7,20 @@
 -- Autor         : Ariel Pola
 -------------------------------------------------------------------------------*/
 
-`include "/home/edgardo/Nube/MEGA/Facultad/DDA/TPfinal/DDAfinal/rtl/top_board/fpga_files.v"
+//`include "/home/edgardo/Nube/MEGA/Facultad/DDA/TPfinal/DDAfinal/rtl/top_board/fpga_files.v"
 
 module fpga
   (
    out_leds_rgb0,
    out_leds_rgb1,
-   out_leds_rgb2,
-   out_leds_rgb3,
+   //out_leds_rgb2,
+   //out_leds_rgb3,
    out_leds,
-   out_tx_uart,
-   in_rx_uart,
+   //out_tx_uart,
+   //in_rx_uart,
    in_reset,
    i_switch,
-   clk100
+   clk
    );
 
    ///////////////////////////////////////////
@@ -65,13 +65,15 @@ module fpga
    output [3 - 1 : 0]                                out_leds_rgb2;
    output [3 - 1 : 0]                                out_leds_rgb3;
 
-   output wire                                       out_tx_uart;
-   input wire                                        in_rx_uart;
+   /*output*/wire                                    out_tx_uart;
+   /*input*/ wire                                    in_rx_uart;
    input wire                                        in_reset;
-   input wire [4 - 1 : 0]                            i_switch;
+   input wire [2 - 1 : 0]                            i_switch;
 
-   input                                             clk100;
+   input                                             clk;
 
+   
+   assign in_rx_uart = 0;
    ///////////////////////////////////////////
    // Vars
    ///////////////////////////////////////////
@@ -118,7 +120,7 @@ module fpga
         .gpio_rtl_tri_o   (gpo0        ),  // GPIO
         .gpio_rtl_tri_i   (gpi0        ),  // GPIO
         .reset            (in_reset    ),  // Hard Reset
-        .sys_clock        (clk100      ),  // Clock de FPGA
+        .sys_clock        (clk         ),  // Clock de FPGA
         .o_lock_clock     (locked      ),  // Senal Lock Clock
         .usb_uart_rxd     (in_rx_uart  ),  // UART
         .usb_uart_txd     (out_tx_uart )   // UART
@@ -133,20 +135,20 @@ module fpga
    assign out_leds[3] = log_out_full_from_ram & log_in_ram_run_from_micro;
 
    assign out_leds_rgb0[0] = enable0;
-   assign out_leds_rgb0[1] = 1'b0;
+   assign out_leds_rgb0[1] = enable2;
    assign out_leds_rgb0[2] = 1'b0;
 
    assign out_leds_rgb1[0] = enable1;
-   assign out_leds_rgb1[1] = 1'b0;
+   assign out_leds_rgb1[1] = enable3;
    assign out_leds_rgb1[2] = 1'b0;
 
-   assign out_leds_rgb2[0] = 1'b0;
-   assign out_leds_rgb2[1] = enable2;
-   assign out_leds_rgb2[2] = 1'b0;
-
-   assign out_leds_rgb3[0] = 1'b0;
-   assign out_leds_rgb3[1] = 1'b0;
-   assign out_leds_rgb3[2] = enable3;
+//    assign out_leds_rgb2[0] = 1'b0;
+//    assign out_leds_rgb2[1] = enable2;
+//    assign out_leds_rgb2[2] = 1'b0;
+// 
+//    assign out_leds_rgb3[0] = 1'b0;
+//    assign out_leds_rgb3[1] = 1'b0;
+//    assign out_leds_rgb3[2] = enable3;
 
 
    ///////////////////////////////////////////
@@ -210,16 +212,18 @@ module fpga
         prmt_coeff_channel <= {8'd0,8'd22,8'd56,8'd112,8'd11,8'd0,8'd0};
    end
 
-   always@(posedge clockdsp) begin
-      if(i_switch[3:2]==2'b00)
-        step_mu <= {8'b0000_0000};
-      else if(i_switch[3:2]==2'b01)
-        step_mu <= {8'b0000_0001};
-      else if(i_switch[3:2]==2'b10)
-        step_mu <= {8'b0000_0100};
-      else
-        step_mu <= {8'b0001_0000};
-   end
+//    always@(posedge clockdsp) begin
+//       if(i_switch[3:2]==2'b00)
+//         step_mu <= {8'b0000_0000};
+//       else if(i_switch[3:2]==2'b01)
+//         step_mu <= {8'b0000_0001};
+//       else if(i_switch[3:2]==2'b10)
+//         step_mu <= {8'b0000_0100};
+//       else
+//         step_mu <= {8'b0001_0000};
+//    end
+    
+    always@(posedge clockdsp) step_mu <= 8'b0000_0001;
 
    fir_channel
      #(

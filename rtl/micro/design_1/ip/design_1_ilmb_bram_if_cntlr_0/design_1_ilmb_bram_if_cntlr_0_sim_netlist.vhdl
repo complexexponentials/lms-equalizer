@@ -1,14 +1,14 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
--- Date        : Wed Jul 17 15:07:53 2019
--- Host        : e-ThinkPad running 64-bit Ubuntu 19.04
+-- Date        : Wed Jul 31 12:55:16 2019
+-- Host        : edgardo-work running 64-bit Ubuntu 19.04
 -- Command     : write_vhdl -force -mode funcsim
---               /home/edgardo/Nube/MEGA/Facultad/DDA/TPfinal/DDAfinal/rtl/micro/design_1/ip/design_1_ilmb_bram_if_cntlr_0/design_1_ilmb_bram_if_cntlr_0_sim_netlist.vhdl
+--               /home/edgardo/repos/complexexponentials/lms-equalizer/rtl/micro/design_1/ip/design_1_ilmb_bram_if_cntlr_0/design_1_ilmb_bram_if_cntlr_0_sim_netlist.vhdl
 -- Design      : design_1_ilmb_bram_if_cntlr_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xc7a35ticsg324-1L
+-- Device      : xc7z010clg400-1
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -109,7 +109,7 @@ entity design_1_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr is
   attribute C_ECC_STATUS_REGISTERS : integer;
   attribute C_ECC_STATUS_REGISTERS of design_1_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr : entity is 0;
   attribute C_FAMILY : string;
-  attribute C_FAMILY of design_1_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr : entity is "artix7";
+  attribute C_FAMILY of design_1_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr : entity is "zynq";
   attribute C_FAULT_INJECT : integer;
   attribute C_FAULT_INJECT of design_1_ilmb_bram_if_cntlr_0_lmb_bram_if_cntlr : entity is 0;
   attribute C_HIGHADDR : string;
@@ -495,7 +495,7 @@ architecture STRUCTURE of design_1_ilmb_bram_if_cntlr_0 is
   attribute C_ECC_STATUS_REGISTERS : integer;
   attribute C_ECC_STATUS_REGISTERS of U0 : label is 0;
   attribute C_FAMILY : string;
-  attribute C_FAMILY of U0 : label is "artix7";
+  attribute C_FAMILY of U0 : label is "zynq";
   attribute C_FAULT_INJECT : integer;
   attribute C_FAULT_INJECT of U0 : label is 0;
   attribute C_HIGHADDR : string;

@@ -1,14 +1,14 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (lin64) Build 2552052 Fri May 24 14:47:09 MDT 2019
-// Date        : Wed Jul 17 15:04:31 2019
-// Host        : e-ThinkPad running 64-bit Ubuntu 19.04
+// Date        : Wed Jul 31 12:51:04 2019
+// Host        : edgardo-work running 64-bit Ubuntu 19.04
 // Command     : write_verilog -force -mode funcsim
-//               /home/edgardo/Nube/MEGA/Facultad/DDA/TPfinal/DDAfinal/rtl/micro/design_1/ip/design_1_mdm_1_0/design_1_mdm_1_0_sim_netlist.v
+//               /home/edgardo/repos/complexexponentials/lms-equalizer/rtl/micro/design_1/ip/design_1_mdm_1_0/design_1_mdm_1_0_sim_netlist.v
 // Design      : design_1_mdm_1_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
-// Device      : xc7a35ticsg324-1L
+// Device      : xc7z010clg400-1
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
@@ -938,7 +938,7 @@ module design_1_mdm_1_0
   (* C_DBG_REG_ACCESS = "0" *) 
   (* C_DEBUG_INTERFACE = "0" *) 
   (* C_EXT_TRIG_RESET_VALUE = "20'b11110001001000110100" *) 
-  (* C_FAMILY = "artix7" *) 
+  (* C_FAMILY = "zynq" *) 
   (* C_INTERCONNECT = "2" *) 
   (* C_JTAG_CHAIN = "2" *) 
   (* C_MB_DBG_PORTS = "1" *) 
@@ -4703,7 +4703,7 @@ endmodule
 
 (* C_ADDR_SIZE = "32" *) (* C_AVOID_PRIMITIVES = "0" *) (* C_BSCANID = "76547328" *) 
 (* C_DATA_SIZE = "32" *) (* C_DBG_MEM_ACCESS = "0" *) (* C_DBG_REG_ACCESS = "0" *) 
-(* C_DEBUG_INTERFACE = "0" *) (* C_EXT_TRIG_RESET_VALUE = "20'b11110001001000110100" *) (* C_FAMILY = "artix7" *) 
+(* C_DEBUG_INTERFACE = "0" *) (* C_EXT_TRIG_RESET_VALUE = "20'b11110001001000110100" *) (* C_FAMILY = "zynq" *) 
 (* C_INTERCONNECT = "2" *) (* C_JTAG_CHAIN = "2" *) (* C_MB_DBG_PORTS = "1" *) 
 (* C_M_AXIS_DATA_WIDTH = "32" *) (* C_M_AXIS_ID_WIDTH = "7" *) (* C_M_AXI_ADDR_WIDTH = "32" *) 
 (* C_M_AXI_DATA_WIDTH = "32" *) (* C_M_AXI_THREAD_ID_WIDTH = "1" *) (* C_S_AXI_ACLK_FREQ_HZ = "100000000" *) 

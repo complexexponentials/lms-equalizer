@@ -16,25 +16,27 @@ preplace inst mdm_1 -pg 1 -lvl 1 -x 220 -y 450 -defaultsOSRD
 preplace inst microblaze_0 -pg 1 -lvl 2 -x 690 -y 450 -defaultsOSRD
 preplace inst microblaze_0_axi_periph -pg 1 -lvl 3 -x 1110 -y 190 -defaultsOSRD
 preplace inst rst_clk_wiz_1_100M -pg 1 -lvl 1 -x 220 -y 700 -defaultsOSRD
-preplace netloc microblaze_0_Clk 1 0 5 30 540 440 540 940 10 1280 380 1530
-preplace netloc clk_wiz_1_locked 1 0 5 20 570 NJ 570 NJ 570 1260J 480 1520
-preplace netloc rst_clk_wiz_1_100M_mb_reset 1 1 1 420 480n
-preplace netloc rst_clk_wiz_1_100M_bus_struct_reset 1 1 2 440J 550 950
-preplace netloc mdm_1_debug_sys_rst 1 0 2 10 520 400
-preplace netloc reset_1 1 0 4 0 580 NJ 580 NJ 580 1270J
+preplace netloc microblaze_0_Clk 1 0 5 10 540 440 540 940 10 1280 380 1530
+preplace netloc clk_wiz_1_locked 1 0 5 30 570 NJ 570 NJ 570 1260J 480 1520
+preplace netloc rst_clk_wiz_1_100M_mb_reset 1 1 1 430 480n
+preplace netloc rst_clk_wiz_1_100M_bus_struct_reset 1 1 2 NJ 680 950
+preplace netloc mdm_1_debug_sys_rst 1 0 4 20 550 410 550 N 550 1270
+preplace netloc reset_1 1 0 1 0 580n
 preplace netloc sys_clock_1 1 0 4 NJ 560 NJ 560 NJ 560 NJ
-preplace netloc rst_clk_wiz_1_100M_peripheral_aresetn 1 1 3 430J 360 950 370 1260
-preplace netloc rst_clk_wiz_1_100M_interconnect_aresetn 1 1 2 410J 110 N
-preplace netloc microblaze_0_dlmb_1 1 2 1 N 430
-preplace netloc microblaze_0_ilmb_1 1 2 1 N 450
-preplace netloc microblaze_0_debug 1 1 1 N 440
-preplace netloc microblaze_0_M_AXI_DP 1 2 1 930 70n
-preplace netloc microblaze_0_axi_periph_M00_AXI 1 3 1 1260 140n
-preplace netloc microblaze_0_axi_periph_M03_AXI 1 3 1 1270 220n
-preplace netloc axi_gpio_0_GPIO 1 4 1 1530J 160n
+preplace netloc rst_clk_wiz_1_100M_peripheral_aresetn 1 1 3 420J 360 950 370 1260
+preplace netloc rst_clk_wiz_1_100M_interconnect_aresetn 1 1 2 400J 110 N
 preplace netloc axi_uartlite_0_UART 1 4 1 NJ 290
+preplace netloc microblaze_0_axi_periph_M00_AXI 1 3 1 1260 140n
+preplace netloc axi_gpio_0_GPIO 1 4 1 1530J 160n
+preplace netloc microblaze_0_M_AXI_DP 1 2 1 930 70n
+preplace netloc microblaze_0_dlmb_1 1 2 1 N 430
+preplace netloc microblaze_0_debug 1 1 1 N 440
+preplace netloc microblaze_0_ilmb_1 1 2 1 N 450
+preplace netloc microblaze_0_axi_periph_M03_AXI 1 3 1 1270 220n
 levelinfo -pg 1 -20 220 690 1110 1400 1550
 pagesize -pg 1 -db -bbox -sgen -140 0 1690 800
 "
 }
-0
+{
+   "da_board_cnt":"1"
+}

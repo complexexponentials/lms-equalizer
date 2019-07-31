@@ -30438,11 +30438,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jul 17 18:03:09 UTC 2019</spirit:value>
+            <spirit:value>Wed Jul 31 15:49:16 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:f8184796</spirit:value>
+            <spirit:value>9:c97e49aa</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -30453,7 +30453,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:f8184796</spirit:value>
+            <spirit:value>9:c97e49aa</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -30469,11 +30469,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jul 17 18:03:09 UTC 2019</spirit:value>
+            <spirit:value>Wed Jul 31 15:49:16 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:f8184796</spirit:value>
+            <spirit:value>9:c97e49aa</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -30492,11 +30492,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jul 17 18:03:09 UTC 2019</spirit:value>
+            <spirit:value>Wed Jul 31 15:49:16 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:616ba1c3</spirit:value>
+            <spirit:value>9:e2ed848c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -30512,11 +30512,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jul 17 18:03:09 UTC 2019</spirit:value>
+            <spirit:value>Wed Jul 31 15:49:16 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:616ba1c3</spirit:value>
+            <spirit:value>9:e2ed848c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -30530,11 +30530,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jul 17 18:04:32 UTC 2019</spirit:value>
+            <spirit:value>Wed Jul 31 15:51:05 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:f8184796</spirit:value>
+            <spirit:value>9:c97e49aa</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -64955,7 +64955,7 @@
     <spirit:modelParameters>
       <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="string">
         <spirit:name>C_FAMILY</spirit:name>
-        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_FAMILY">artix7</spirit:value>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_FAMILY">zynq</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_JTAG_CHAIN</spirit:name>
@@ -65773,8 +65773,8 @@
       <xilinx:displayName>MicroBlaze Debug Module (MDM)</xilinx:displayName>
       <xilinx:coreRevision>16</xilinx:coreRevision>
       <xilinx:configElementInfos>
-        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_ADDR_SIZE" xilinx:valueSource="propagated" xilinx:valuePermission="bd_and_user"/>
-        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_M_AXI_ADDR_WIDTH" xilinx:valueSource="propagated" xilinx:valuePermission="bd_and_user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_ADDR_SIZE" xilinx:valueSource="propagated"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.C_M_AXI_ADDR_WIDTH" xilinx:valueSource="propagated"/>
       </xilinx:configElementInfos>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
