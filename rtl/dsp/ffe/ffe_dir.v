@@ -10,16 +10,16 @@ module ffe_dir#(
     input                        i_clk,
     input                        i_rst,
     input                        i_en,
-    input signed  [IN_BW-1:0]   i_data,
-    output signed [OUT_BW-1:0]   o_data,
+    input signed     [IN_BW-1:0]    i_data,
+    output reg signed[OUT_BW-1:0]   o_data,
 
     input [(COEF_BW*N_COEF)-1:0] i_coefs   // Coefficients bus: CN, CN-1, ... , C1, C0
     );
 
-    reg signed  [IN_BW-1:0]   data_dl [0:N_COEF-1];
+    reg signed  [IN_BW-1:0]     data_dl [0:N_COEF-1];
     wire signed [COEF_BW-1:0]   coefs   [0:N_COEF-1];
     wire signed [19:0]          prods   [0:N_COEF-1]; // S(20,14)
-    wire signed [20:0]          sums_l1[0:3]; // level 1 sum
+    reg signed [20:0]          sums_l1[0:3]; // level 1 sum
     wire signed [21:0]          sums_l2[0:1]; // level 2 sum
     wire signed [22:0]          dout_int;
 
@@ -53,15 +53,18 @@ module ffe_dir#(
     endgenerate
 
     /* Adder tree */
-    generate
-        for (k=0; k<(N_COEF/2); k=k+1)
-            assign sums_l1[k] = prods[(2*k)]+prods[(2*k)+1];
-    endgenerate
+    // Pipeline:
+    always@(posedge i_clk) begin
+        for (i=0; i<(N_COEF/2); i=i+1)
+            sums_l1[i] <= prods[(2*i)]+prods[(2*i)+1];
+    end
 
     assign sums_l2[0] = sums_l1[0] + sums_l1[1];
     assign sums_l2[1] = sums_l1[2] + prods[6];
 
     assign dout_int = sums_l2[0] + sums_l2[1];  //S(23,14)
-    assign o_data = {dout_int[22], dout_int[14:7]}; // saturacion y truncado a S(9,7)
+
+    always@(posedge i_clk)
+        o_data <= {dout_int[22], dout_int[14:7]}; // saturacion y truncado a S(9,7)
 
 endmodule

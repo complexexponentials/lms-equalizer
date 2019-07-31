@@ -18,13 +18,16 @@ module dsp
 
 localparam COEF_BW = 9;
 localparam N_COEF = 7;
+localparam FIR_PIPE_STAGES = 2;
 
+integer i;  // Iterator
 
 wire signed [8:0] ffe_out;
+reg signed  [8:0] ffe_out_d;
 wire [(COEF_BW*N_COEF)-1:0] coefs;
 wire signed [8:0] slice;
-wire signed [9:0] error;    // MSbs discared
-
+wire signed [9:0] error;            // MSbs discared
+reg [10:0]connect_ch_to_dsp_dl [FIR_PIPE_STAGES:0];     // Input data delay line
 
 reg [7:0]step_mu_reg;
 always @(posedge clockdsp) begin
@@ -45,12 +48,23 @@ ffe_inst(
     .i_rst(soft_reset),
     .i_en(rf_enables_module[0]),
     .i_data(connect_ch_to_dsp),
-    .o_data(ffe_out),
+    .o_data(ffe_out),   // 2 Pipeline stages
     .i_coefs(coefs)
 );
 
 assign slice = ffe_out[8] ? 9'b110000000 : 9'b010000000; // S(9,7) : 1,-1
 assign error = slice - ffe_out;
+
+// Pipeline for input (to keep aligned with error)
+always@(connect_ch_to_dsp) connect_ch_to_dsp_dl[0] = connect_ch_to_dsp;
+always@(posedge clockdsp) begin
+    if (soft_reset)
+        for(i=0; i<FIR_PIPE_STAGES; i=i+1)
+            connect_ch_to_dsp_dl[i] <= 0;
+    else
+        for(i=0; i<FIR_PIPE_STAGES; i=i+1)
+            connect_ch_to_dsp_dl[i+1] <= connect_ch_to_dsp_dl[i];
+end
 
 lms #(
     .DATA_BW(11),        // Data bit width
@@ -60,7 +74,7 @@ lms #(
 lms_inst(
     .i_clk(clockdsp),
     .i_rst(soft_reset),
-    .i_data(connect_ch_to_dsp),
+    .i_data(connect_ch_to_dsp_dl[FIR_PIPE_STAGES]),
     .i_en(rf_enables_module[0]),
     .i_error(error[7:0]), // S(8,7) always < 1
     .i_mu(step_mu_reg),

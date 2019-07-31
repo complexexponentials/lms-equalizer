@@ -8,21 +8,21 @@ module lms #(
 (
     input i_clk,
     input i_rst,
-    input signed [DATA_BW-1:0] i_data,
     input i_en,
+    input signed [DATA_BW-1:0] i_data,
     input signed [7:0] i_error, //S(8,7)
     input signed [7:0] i_mu,    //S(8,7)
     
     output [(COEF_BW*N_COEF)-1:0] o_coefs
 );
 
-reg signed [8:0]data_dl [0:N_COEF-1];   // S(9,7) Input data delay line
+reg signed [DATA_BW-1:0]data_dl [0:N_COEF];   // S(11,7) Input data delay line
 
-wire signed [15:0]error_weightened;    // S(16,14)
-wire signed [24:0]correction_term  [0:N_COEF-1];    // S(25,21) : Mu.e(n).x(n-i)
+reg signed  [15:0]error_weightened;    // S(16,14)
+wire signed [26:0]correction_term  [0:N_COEF-1];    // S(27,21) : Mu.e(n).x(n-i)
 
-wire signed [25:0]c_next [0:N_COEF-1];  // S(26,21)
-reg signed [24:0]c_reg  [0:N_COEF-1];  // S(25,21)
+wire signed [28:0]c_next [0:N_COEF-1];  // S(28,21)
+reg signed  [26:0]c_reg  [0:N_COEF-1];  // S(27,21)
 
 integer i;  // Iterator
 
@@ -30,21 +30,27 @@ integer i;  // Iterator
 always @(i_data) data_dl[0] = i_data;
 always @(posedge i_clk) begin
     if(i_rst) begin
-        for (i=0; i<N_COEF-1; i=i+1)
+        for (i=0; i<N_COEF; i=i+1)
             data_dl[i+1] <= 0;
     end
     else if(i_en) begin
-        for (i=0; i<N_COEF-1; i=i+1)
+        for (i=0; i<N_COEF; i=i+1)
             data_dl[i+1] <= data_dl[i];
     end
 end
 
-assign error_weightened = i_error * i_mu;
+// Pipeline
+always@(posedge i_clk) begin
+    if (i_rst)
+        error_weightened <= 0;
+    else
+        error_weightened <= i_error * i_mu;
+end
 
 genvar k;
 generate
     for (k=0; k<N_COEF; k=k+1)
-        assign correction_term[k] = error_weightened * data_dl[k];
+        assign correction_term[k] = error_weightened * data_dl[k+1];
 endgenerate
 
 always @(posedge i_clk) begin
@@ -70,9 +76,8 @@ endgenerate
 
 localparam T = 22;
 
-/* Truncado y saturación de S(25,21) a S(9,7) 
+/* Truncado y saturación de S(27,21) a S(9,7) 
    T es el bit que se tomará como el más significativo */
-
 generate
     for (k=0; k<N_COEF; k=k+1)
         assign o_coefs[COEF_BW*(k+1)-1:COEF_BW*k] = {c_reg[k][24],c_reg[k][T-1:T-8]};
