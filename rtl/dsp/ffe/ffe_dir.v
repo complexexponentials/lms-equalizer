@@ -18,10 +18,10 @@ module ffe_dir#(
 
     reg signed  [IN_BW-1:0]   data_dl [0:N_COEF-1];
     wire signed [COEF_BW-1:0]   coefs   [0:N_COEF-1];
-    wire signed [19:0]          prods   [0:N_COEF-1];
+    wire signed [19:0]          prods   [0:N_COEF-1]; // S(20,14)
+    wire signed [20:0]          sums_l1[0:3]; // level 1 sum
+    wire signed [21:0]          sums_l2[0:1]; // level 2 sum
     wire signed [22:0]          dout_int;
-    wire signed [20:0]          sums_l1[0:3];
-    wire signed [21:0]          sums_l2[0:1];
 
     integer i;  // Iterator
     genvar  k;  // Generation variable
@@ -59,9 +59,9 @@ module ffe_dir#(
     endgenerate
 
     assign sums_l2[0] = sums_l1[0] + sums_l1[1];
-    assign sums_l2[1] = sums_l1[2] + {prods[6][19],prods[6]};
+    assign sums_l2[1] = sums_l1[2] + prods[6];
 
-    assign dout_int = sums_l2[0] + sums_l2[1];
-    assign o_data = dout_int[15:15-(OUT_BW-1)]; //S(9,7)
+    assign dout_int = sums_l2[0] + sums_l2[1];  //S(23,14)
+    assign o_data = {dout_int[22], dout_int[14:7]}; // saturacion y truncado a S(9,7)
 
 endmodule
