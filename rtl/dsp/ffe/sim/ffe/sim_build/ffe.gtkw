@@ -1,0 +1,91 @@
+[*]
+[*] GTKWave Analyzer v3.3.98 (w)1999-2019 BSI
+[*] Fri Jul 19 02:35:37 2019
+[*]
+[dumpfile] "/home/edgardo/Nube/MEGA/Facultad/DDA/TPfinal/DDAfinal/rtl/dsp/ffe/sim/ffe/sim_build/ffe.vcd"
+[dumpfile_mtime] "Fri Jul 19 02:17:29 2019"
+[dumpfile_size] 25643
+[savefile] "/home/edgardo/Nube/MEGA/Facultad/DDA/TPfinal/DDAfinal/rtl/dsp/ffe/sim/ffe/sim_build/ffe.gtkw"
+[timestart] 21069
+[size] 2560 1363
+[pos] -1 -1
+*-9.703484 25496 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 274
+[signals_width] 340
+[sst_expanded] 1
+[sst_vpaned_height] 399
+@40000028
+[fpshift_count] 14
+ffe.\prods[0][19:0]
+@40000420
+[fpshift_count] 14
+ffe.\prods[1][19:0]
+[fpshift_count] 14
+ffe.\prods[2][19:0]
+[fpshift_count] 14
+ffe.\prods[3][19:0]
+[fpshift_count] 14
+ffe.\prods[4][19:0]
+[fpshift_count] 14
+ffe.\prods[5][19:0]
+[fpshift_count] 14
+ffe.\prods[6][19:0]
+@40000028
+[fpshift_count] 7
+ffe.\sum_next[0][11:0]
+@40000420
+[fpshift_count] 7
+ffe.\sum_next[1][11:0]
+[fpshift_count] 7
+ffe.\sum_next[2][11:0]
+[fpshift_count] 7
+ffe.\sum_next[3][11:0]
+[fpshift_count] 7
+ffe.\sum_next[4][11:0]
+[fpshift_count] 7
+ffe.\sum_next[5][11:0]
+[fpshift_count] 7
+ffe.\sum_reg[0][11:0]
+[fpshift_count] 7
+ffe.\sum_reg[1][11:0]
+[fpshift_count] 7
+ffe.\sum_reg[2][11:0]
+[fpshift_count] 7
+ffe.\sum_reg[3][11:0]
+[fpshift_count] 7
+ffe.\sum_reg[4][11:0]
+[fpshift_count] 7
+ffe.\sum_reg[5][11:0]
+@420
+ffe.clk
+@40000420
+[fpshift_count] 7
+ffe.coef0[8:0]
+[fpshift_count] 7
+ffe.coef1[8:0]
+[fpshift_count] 7
+ffe.coef2[8:0]
+[fpshift_count] 7
+ffe.coef3[8:0]
+[fpshift_count] 7
+ffe.coef4[8:0]
+[fpshift_count] 7
+ffe.coef5[8:0]
+[fpshift_count] 7
+ffe.coef6[8:0]
+[fpshift_count] 7
+ffe.din[10:0]
+@40000028
+[fpshift_count] 7
+ffe.dout[8:0]
+@40000029
+[fpshift_count] 7
+ffe.dout_int[11:0]
+@420
+ffe.en
+ffe.i
+ffe.j
+ffe.jj[31:0]
+ffe.rst
+[pattern_trace] 1
+[pattern_trace] 0
