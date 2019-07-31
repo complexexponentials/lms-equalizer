@@ -7,7 +7,7 @@ SIM=icarus
 
 SPATH = $(PWD)/..
 VERILOG_SOURCES= $(SPATH)/dsp.v \
-                 $(SPATH)/ffe/ffe.v \
+                 $(SPATH)/ffe/ffe_trans.v \
                  $(SPATH)/ffe/ffe_dir.v \
                  $(SPATH)/lms/lms.v \
                  $(SPATH)/bram/bram.v \

@@ -21,7 +21,6 @@ localparam N_COEF = 7;
 
 
 wire signed [8:0] ffe_out;
-//wire signed [8:0] coefs [6:0];
 wire [(COEF_BW*N_COEF)-1:0] coefs;
 wire signed [8:0] slice;
 wire signed [9:0] error;    // MSbs discared
@@ -36,7 +35,7 @@ always @(posedge clockdsp) begin
 end
 
 ffe_dir #(
-    .DATA_BW(11),       // Data bit width
+    .IN_BW(11),       // Data bit width
     .OUT_BW(COEF_BW),   // Ouput bit width
     .COEF_BW(COEF_BW),  // Coefficients bit width
     .N_COEF(N_COEF)     // Number of coefficients
@@ -47,18 +46,16 @@ ffe_inst(
     .i_en(rf_enables_module[0]),
     .i_data(connect_ch_to_dsp),
     .o_data(ffe_out),
-    
     .i_coefs(coefs)
-
 );
 
 assign slice = ffe_out[8] ? 9'b110000000 : 9'b010000000; // S(9,7) : 1,-1
 assign error = slice - ffe_out;
 
 lms #(
-    .DATA_BW(11),  // Data bit width
+    .DATA_BW(11),        // Data bit width
     .COEF_BW(COEF_BW),   // Coefficients bit width
-    .N_COEF(N_COEF)     // Number of coefficients
+    .N_COEF(N_COEF)      // Number of coefficients
 )
 lms_inst(
     .i_clk(clockdsp),

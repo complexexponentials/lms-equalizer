@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps 
+
 // Dual-PortRAM with SynchronousRead (ReadThrough)
 
 module dual_port_ram #(

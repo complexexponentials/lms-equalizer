@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps 
+
 module log_fsm(
     input clk,
     input rst,
