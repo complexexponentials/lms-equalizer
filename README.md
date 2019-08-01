@@ -39,8 +39,15 @@ La arquitectura del Feed Forward Equalizer (FFE) se puede ver en la siguiente fi
 
 ![ffe]
 
+En particular, se usó una forma directa y un árbol de sumas para que sea sencillo agregar registros de pipeline en una etapa subsecuente. A la salida, hay una lógica de saturación y redondeo que ajusta la palabra de salida de S(23,14) a S(9,7). Experimentalmente se encontró donde conviene hacer el corte para no perder precisión.
 
+# Descripción del LMS
+
+La arquitectura del Least Mean Squares (LMS) se puede ver en la siguiente figura:
+
+![lms]
 
 [dsp]: img/dsp.png
 [ffe]: img/FFE.png
+[lms]: img/lms.png
 
