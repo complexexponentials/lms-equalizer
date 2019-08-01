@@ -10,6 +10,7 @@ channel   = [[0,0,0,0.9921875,0,0,0],
              [0,0,0.2421875,0.96875,0,0,0],
              [0,0,0.2421875,0.96875,0.09375,0,0],
              [0,0.171875,0.4375,0.875,0.0859375,0,0]]
+ch_sel = 1
 
 @cocotb.coroutine
 def reset(dut):
@@ -34,21 +35,24 @@ def test_dsp(dut):
     
 
     yield Timer(10, units='ns')
-    dut.step_mu <= 1 # 0,1,4,16
+    dut.step_mu <= 4 # 0,1,4,16
 
     N = 1000
     dut.rf_enables_module <= 1
     fir_output = np.zeros(N, dtype=int)
     err_output = np.zeros(N, dtype=int)
+    coefs_out  = np.zeros((N,7), dtype=int)
     
-    fir_input_prbs = np.convolve(np.random.choice([128, -128], (N)), channel[0], mode='same')
+    fir_input_prbs = np.convolve(np.random.choice([128, -128], (N)), channel[ch_sel], mode='same')
     fir_input_pulse = np.concatenate((np.ones(50)*128, np.ones(50)*-128))
     for i,val in enumerate(fir_input_prbs.astype('int')):
         dut.connect_ch_to_dsp <= val
         yield RisingEdge(dut.clockdsp)
         fir_output[i] = dut.ffe_inst.o_data.value.signed_integer
         err_output[i] = dut.error.value.signed_integer
-    
+        for k in range(7):
+            coefs_out[i,k] = dut.ffe_inst.coefs[k].value.signed_integer
+
     # test read_values
     yield Timer(10, units='ns')
 
@@ -71,6 +75,25 @@ def test_dsp(dut):
     plt.grid()
     plt.ylim((np.min(err_output)-0.5,np.max(err_output)+0.5))
     plt.ylabel('Amplitude')
+    plt.xlabel('Samples')
+
+    plt.figure()
+    plt.subplot(3,1,1)
+    plt.plot(coefs_out)
+    plt.grid()
+    plt.ylim((min(coefs_out[len(coefs_out)-1])-12,max(coefs_out[len(coefs_out)-1])+12))
+    plt.ylabel('Amplitude')
+    plt.title('Taps of FFE')
+    plt.subplot(3,1,2)
+    plt.stem(coefs_out[len(coefs_out)-1])
+    plt.grid()
+    plt.ylim((min(coefs_out[len(coefs_out)-1])-0.5,max(coefs_out[len(coefs_out)-1])+0.5))
+    plt.ylabel('Amplitude')
+    plt.subplot(3,1,3)
+    plt.stem(np.convolve(channel[ch_sel],coefs_out[len(coefs_out)-1]))
+    plt.grid()
+    plt.ylim((min(coefs_out[len(coefs_out)-1])-0.5,max(coefs_out[len(coefs_out)-1])+0.5))
+    plt.ylabel('Conv.Ch.Taps')
     plt.xlabel('Samples')
 
     plt.show(block=True)
