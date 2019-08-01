@@ -35,9 +35,12 @@ En cualquier caso, si por alguna condición numérica excepcional se supera el r
 
 # Descripción de FFE
 
+La arquitectura del Feed Forward Equalizer (FFE) se puede ver en la siguiente figura:
 
+![ffe]
 
 
 
 [dsp]: img/dsp.png
+[ffe]: img/FFE.png
 
