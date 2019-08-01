@@ -1,11 +1,12 @@
 # lms-equalizer
+
 Ecualizador LMS implementado en RTL
 
-# Objetivo
+## Objetivo
 
 Implementar en FPGA un ecualizador adaptativo utilizando los conocimientos adquiridos en el Curso de Diseño Digital Avanzado
 
-# Estructura 
+## Estructura 
 
 El trabajo se estructura en una serie de directorios listados a continuación:
 
@@ -14,12 +15,11 @@ El trabajo se estructura en una serie de directorios listados a continuación:
 * **rtl**: Entorno de verificación.
 * **sim**: Simulador en python que se utiliza para entender el comportamiento del filtro adaptivo.
 
-En particular, el código del ecualizador se encuentra en el directorio `rtl/dsp`.
-En la siguiente figura vemos un diagrama del sistema a implementar:
+En particular, el código del ecualizador se encuentra en el directorio [rtl/dsp](./rtl/dsp). En la siguiente figura vemos un diagrama del sistema a implementar:
 
 ![dsp]
 
-En esta figura, se ven anchos de palabra no definidos. Por medio de los scripts de simulación provistos en el directorio `sim`, se pudo estimar los anchos requeridos para cada bus:
+En esta figura, se ven anchos de palabra no definidos. Por medio de los scripts de simulación provistos en el directorio [sim](./sim), se pudo estimar los anchos requeridos para cada bus:
 
 * salida de FFE    : signed (9,7)
 * salida de slicer : signed (8,7)
@@ -28,26 +28,26 @@ En esta figura, se ven anchos de palabra no definidos. Por medio de los scripts 
 
 Se pudo ver en las simulaciones que:
 * La salida del filtro siempre se encuentra dentro del rango [-2,2), por lo tanto con 2 bits de parte entera es suficiente.
-* Tanto el error como la señal de slicer, nunca pueden superar el rango [-1,1), por lo tanto, con 1 bit de parte entera es suficiente
+* Tanto el error como la señal de slicer, nunca pueden superar el rango [-1,1), por lo tanto, con 1 bit de parte entera es suficiente.
 * Los valores que van tomando los coeficientes, tampoco nunca superan  el rango [-2,2), por lo tanto, con 2 bits de parte entera es suficiente.
 
 En cualquier caso, si por alguna condición numérica excepcional se supera el rango previsto, existe una lógica de saturación que previene el *wrapping*. 
 
-# Descripción de FFE
+## Descripción de FFE
 
 La arquitectura del Feed Forward Equalizer (FFE) se puede ver en la siguiente figura:
 
 ![ffe]
 
-En particular, se usó una forma directa y un árbol de sumas para que sea sencillo agregar registros de pipeline en una etapa subsecuente. A la salida, hay una lógica de saturación y truncado que ajusta la palabra de S(23,14) a S(9,7). Experimentalmente se encontró donde conviene hacer el corte para no perder precisión.
+En particular, se usó una forma directa para la estructura del filtro FIR y se implementó un árbol de sumas para que sea sencillo agregar registros de pipeline en una etapa subsecuente. A la salida, hay una lógica de saturación y truncado que ajusta la palabra de S(23,14) a S(9,7). Experimentalmente se encontró donde conviene hacer el corte para minimizar el error de precisión numérica.
 
-# Descripción del LMS
+## Descripción del LMS
 
 La arquitectura del Least Mean Squares (LMS) se puede ver en la siguiente figura:
 
 ![lms]
 
-# Simulación
+## Simulación
 
 La simulación se realizó con [cocotb](https://github.com/cocotb/cocotb) y se compararon los resultados con los de la simulación en Python. Para ejecutar los tests, posicionarse en el directorio `rtl/dsp/sim` y hacer
 
@@ -106,10 +106,13 @@ Se puede ver que en general los resultados del hardware son coherentes con los s
 
 ### Evolución de coeficientes para canal 1 y mu = 2e-5
 
+####Hardware
 ![hw-coefs-chan1-step2]
+
+####Simulación
 ![py-coefs-chan1-step2]
 
-# Síntesis
+## Síntesis
 
 Una vez obtenidos los resultados deseados en simulación, se procedió a implementar el sistema completo en FPGA. Al no cumplir con el timing, como era previsible, se procedió a insertar registros en diferentes paths para que el sistema pueda correr con el clock esperado. En los siguientes gráficos se puede ver donde fueron insertados los registros que permitieron cumplir con los constraints de timing.
 
@@ -120,7 +123,7 @@ Una vez obtenidos los resultados deseados en simulación, se procedió a impleme
 Al insertar dos registros en el árbol de sumas, la salida del FFE se atrasa 2 clocks, con lo cual debe atrasarse la entrada de datos del LMS. Por otro lado, al insertar un registro en el cálculo de error del LMS, también debe atrasarse la entrada de datos para mantener la coherencia. Es importante que se mantenga la coherencia entre el error y el valor presente en los taps del filtro, que ocasionaron ese error. 
 Al demorar la carga de los nuevos coeficientes en el filtro, tenemos una versión de LMS llamada "Delayed LMS" o DLMS, que posee como desventaja la pérdida de velocidad de adaptación frente a cambios rápidos de canal. La ventaja es que al agregar etapas de pipeline, se puede incrementar la frecuencia del clock del sistema.
 
-# Dificultades encontradas
+## Dificultades encontradas
 
 Los mayores problemas estuvieron en:
 
