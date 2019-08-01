@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <testsuites name="results">
   <testsuite name="all" package="all" tests="0">
-    <property name="random_seed" value="1564603930" />
-    <testcase classname="test" name="test_dsp" ratio_time="675.8519524912061" sim_time_ns="10035.001" time="14.847927808761597" />
+    <property name="random_seed" value="1564681787" />
+    <testcase classname="test" name="test_dsp" ratio_time="9.891083410497496" sim_time_ns="1035.001" time="104.63980102539062" />
   </testsuite>
 </testsuites>

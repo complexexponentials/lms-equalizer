@@ -16,6 +16,8 @@ module ffe_dir#(
     input [(COEF_BW*N_COEF)-1:0] i_coefs   // Coefficients bus: CN, CN-1, ... , C1, C0
     );
 
+    localparam OUT_MSb = 15;    // Ouput MSb for truncation and saturation
+
     reg signed  [IN_BW-1:0]     data_dl [0:N_COEF-1];
     wire signed [COEF_BW-1:0]   coefs   [0:N_COEF-1];
     wire signed [19:0]          prods   [0:N_COEF-1]; // S(20,14)
@@ -65,6 +67,19 @@ module ffe_dir#(
     assign dout_int = sums_l2[0] + sums_l2[1];  //S(23,14)
 
     always@(posedge i_clk)
-        o_data <= {dout_int[22], dout_int[14:7]}; // saturacion y truncado a S(9,7)
+        truncate_and_saturate(dout_int, o_data);
+
+    task truncate_and_saturate;
+        input signed    [22:0]full_prec;
+        output signed   [OUT_BW-1:0] red_prec;
+        begin
+            if (( (&full_prec[22:OUT_MSb]) | (~|full_prec[22:OUT_MSb])))
+                red_prec = full_prec[OUT_MSb:OUT_MSb-OUT_BW+1];
+            else if (full_prec[22])
+                red_prec = {1'b1,{(OUT_BW-1){1'b0}}};
+            else
+                red_prec = {1'b0,{(OUT_BW-1){1'b1}}};
+        end
+    endtask
 
 endmodule
