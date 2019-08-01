@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 Nsymb     = 1000 ## Numero de Simbolos
 step_sel  = 3    ## Paso
-ch_sel    = 3    ## Canal
+ch_sel    = 0    ## Canal
 
 ## Canales
 channel   = [[0,0,0,0.9921875,0,0,0],

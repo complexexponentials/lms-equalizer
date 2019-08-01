@@ -13,7 +13,7 @@ module bram
     input [10:0]    log_in_1,
     input [8:0]     log_in_2,
     input [7:0]     log_in_3,
-    input           log_in_4
+    input [62:0]    log_in_4
 );
 
 wire last_addr;
@@ -25,7 +25,9 @@ reg  [31:0]data_mem;
 reg [10:0]    log_in_1_reg;
 reg [8:0]     log_in_2_reg;
 reg [7:0]     log_in_3_reg;
-reg           log_in_4_reg;
+reg [62:0]    log_in_4_reg;
+
+reg [26:0]log_coefficients;
 
 mod_m_counter #(
     .M(32768)
@@ -40,6 +42,7 @@ address_count(
 
 assign log_out_full_from_ram = last_addr;
 
+// Inputs registers
 always @(posedge clockdsp) begin
     if (soft_reset) begin
         log_in_1_reg <= 0;
@@ -60,8 +63,22 @@ always @(*) begin
         3'd0: data_mem = { {21{log_in_1_reg[10]}}, log_in_1_reg};
         3'd1: data_mem = { {23{log_in_2_reg[8]}}, log_in_2_reg};
         3'd2: data_mem = { {24{log_in_3_reg[7]}}, log_in_3_reg};
-        3'd3: data_mem = {32{1'b0}};
+        3'd3: data_mem = { {5{1'b0}}, log_coefficients};
         default : data_mem = { {21{1'b0}}, log_in_1_reg};
+    endcase
+end
+
+/* Coefficients logging logic */
+always@(address_mem[1:0], log_in_4_reg) begin
+    case (address_mem[1:0])
+        2'd0:   // Coefficients 2, 1, 0
+            log_coefficients = log_in_4_reg[27-1:0];
+        2'd1:   // Coefficients 5, 4, 3
+            log_coefficients = log_in_4_reg[54-1:27];
+        2'd2:   // Coefficient 6
+            log_coefficients = log_in_4_reg[63-1:54];
+        default:   // Coefficients 2, 1, 0
+            log_coefficients = log_in_4_reg[27-1:0];
     endcase
 end
 
