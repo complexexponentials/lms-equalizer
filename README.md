@@ -106,10 +106,10 @@ Se puede ver que en general los resultados del hardware son coherentes con los s
 
 ### Evolución de coeficientes para canal 1 y mu = 2e-5
 
-####Hardware
+#### Hardware
 ![hw-coefs-chan1-step2]
 
-####Simulación
+#### Simulación
 ![py-coefs-chan1-step2]
 
 ## Síntesis
