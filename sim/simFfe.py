@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 Nsymb     = 1000 ## Numero de Simbolos
-step_sel  = 3    ## Paso
+step_sel  = 1    ## Paso
 ch_sel    = 0    ## Canal
 
 ## Canales

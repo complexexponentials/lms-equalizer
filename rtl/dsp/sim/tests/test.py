@@ -34,7 +34,7 @@ def test_dsp(dut):
     
 
     yield Timer(10, units='ns')
-    dut.step_mu <= 16 # 0,1,4,16
+    dut.step_mu <= 1 # 0,1,4,16
 
     N = 1000
     dut.rf_enables_module <= 1
@@ -60,12 +60,12 @@ def test_dsp(dut):
 
     plt.figure()
     plt.subplot(2,1,1)
-    plt.stem(fir_output[0:100])
+    plt.stem(fir_output[0:200])
     plt.grid()
     plt.ylim((np.min(fir_output)-0.5,np.max(fir_output)+0.5))
     plt.ylabel('Amplitude')
     plt.xlabel('Samples')
-    plt.title('FFE Output and Error')
+    plt.title('FFE Output and Error - HW')
     plt.subplot(2,1,2)
     plt.plot(err_output)
     plt.grid()
