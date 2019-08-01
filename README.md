@@ -31,7 +31,7 @@ Se pudo ver en las simulaciones que:
 * Tanto el error como la señal de slicer, nunca pueden superar el rango [-1,1), por lo tanto, con 1 bit de parte entera es suficiente
 * Los valores que van tomando los coeficientes, tampoco nunca superan  el rango [-2,2), por lo tanto, con 2 bits de parte entera es suficiente.
 
-En cualquier caso, si por alguna condición numérica excepcional se supera el rango previsto, existe una lógica de saturación que previene el *wrapping*. Dentro del LMS y del FFE no se realizó escalado.
+En cualquier caso, si por alguna condición numérica excepcional se supera el rango previsto, existe una lógica de saturación que previene el *wrapping*. 
 
 # Descripción de FFE
 
@@ -39,7 +39,7 @@ La arquitectura del Feed Forward Equalizer (FFE) se puede ver en la siguiente fi
 
 ![ffe]
 
-En particular, se usó una forma directa y un árbol de sumas para que sea sencillo agregar registros de pipeline en una etapa subsecuente. A la salida, hay una lógica de saturación y redondeo que ajusta la palabra de salida de S(23,14) a S(9,7). Experimentalmente se encontró donde conviene hacer el corte para no perder precisión.
+En particular, se usó una forma directa y un árbol de sumas para que sea sencillo agregar registros de pipeline en una etapa subsecuente. A la salida, hay una lógica de saturación y truncado que ajusta la palabra de S(23,14) a S(9,7). Experimentalmente se encontró donde conviene hacer el corte para no perder precisión.
 
 # Descripción del LMS
 
@@ -47,7 +47,33 @@ La arquitectura del Least Mean Squares (LMS) se puede ver en la siguiente figura
 
 ![lms]
 
+# Simulación
+
+La simulación se realizó con ![cocotb] y se compararon los resultados con los de la simulación en Python. Para ejecutar los tests, posicionarse en el directorio `rtl/dsp/sim` y hacer
+
+```
+$ make
+$ make gtkwave
+```
+
+# Síntesis
+
+Una vez obtenidos los resultados deseados en simulación, se procedió a implementar el sistema completo en FPGA. Al no cumplir con el timing, como era previsible, se procedió a insertar registros en diferentes paths para que el sistema pueda correr con el clock esperado. En los siguientes gráficos se puede ver donde fueron insertados los registros que permitieron cumplir con los constraints de timing.
+
+![ffe_pipe]
+
+![lms_pipe]
+
+
+
+# Problemas encontrados
+
+
+
 [dsp]: img/dsp.png
 [ffe]: img/FFE.png
-[lms]: img/lms.png
+[ffe_pepi]: img/FFE_pipeline.png
+[lms]: img/LMS.png
+[lms_pipe]: img/LMS_pipeline.png
+[cocotb]: https://github.com/cocotb/cocotb
 
