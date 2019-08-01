@@ -49,7 +49,7 @@ La arquitectura del Least Mean Squares (LMS) se puede ver en la siguiente figura
 
 ## Simulación
 
-La simulación se realizó con [cocotb](https://github.com/cocotb/cocotb) y se compararon los resultados con los de la simulación en Python. Para ejecutar los tests, posicionarse en el directorio `rtl/dsp/sim` y hacer
+La simulación se realizó con [cocotb](https://github.com/cocotb/cocotb) y se compararon los resultados con los de la simulación en Python. Para ejecutar los tests, posicionarse en el directorio [rtl/dsp/sim](./rtl/dsp/sim) y hacer
 
 ```
 $ make
@@ -114,24 +114,45 @@ Se puede ver que en general los resultados del hardware son coherentes con los s
 
 ## Síntesis
 
-Una vez obtenidos los resultados deseados en simulación, se procedió a implementar el sistema completo en FPGA. Al no cumplir con el timing, como era previsible, se procedió a insertar registros en diferentes paths para que el sistema pueda correr con el clock esperado. En los siguientes gráficos se puede ver donde fueron insertados los registros que permitieron cumplir con los constraints de timing.
+Una vez obtenidos los resultados deseados en simulación, se procedió a implementar el sistema completo en FPGA. Al no cumplir con el timing, como era previsible, se procedió a insertar registros en diferentes paths para que el sistema pueda correr con el clock esperado. En los siguientes gráficos se puede ver dónde fueron insertados los registros que finalmente permitieron cumplir con los constraints de timing.
 
 ![ffe_pipe]
 
 ![lms_pipe]
 
-Al insertar dos registros en el árbol de sumas, la salida del FFE se atrasa 2 clocks, con lo cual debe atrasarse la entrada de datos del LMS. Por otro lado, al insertar un registro en el cálculo de error del LMS, también debe atrasarse la entrada de datos para mantener la coherencia. Es importante que se mantenga la coherencia entre el error y el valor presente en los taps del filtro, que ocasionaron ese error. 
+Al insertar dos registros en el árbol de sumas, la salida del FFE se atrasa 2 clocks, con lo cual debe atrasarse la entrada de datos del LMS. Por otro lado, al insertar un registro en el cálculo de error del LMS, también debe atrasarse la entrada de datos para mantener la coherencia. Es importante que se mantenga la coherencia entre el error y los valores presentes en los taps del filtro, que son los mismos que generan el mencionado error.
 Al demorar la carga de los nuevos coeficientes en el filtro, tenemos una versión de LMS llamada "Delayed LMS" o DLMS, que posee como desventaja la pérdida de velocidad de adaptación frente a cambios rápidos de canal. La ventaja es que al agregar etapas de pipeline, se puede incrementar la frecuencia del clock del sistema.
+
+### Resultados de implementación
+
+#### Utilización de recursos
+
+| Name                            | Slice LUTs | Slice Registers | F7 Muxes | F8 Muxes | Slice | LUT as Logic | LUT as Memory | Block RAM Tile | DSPs   |
+|---------------------------------|------------|-----------------|----------|----------|-------|--------------|---------------|----------------|--------|
+| fpga                            | 9.09%      | 4.93%           | 0.68%    | 0.00%    | 9.88% | 8.43%        | 1.43%         | 4.93%          | 72.00% |
+| dsp_inst (dsp)                  | 1.38%      | 0.56%           | 0.00%    | 0.00%    | 1.79% | 1.38%        | 0.00%         | 0.56%          | 56.00% |
+| u_fir_channel (fir_channel)     | 0.16%      | 0.10%           | 0.00%    | 0.00%    | 0.26% | 0.15%        | 0.01%         | 0.10%          | 0.00%  |
+| u_micro (design_1)              | 7.42%      | 4.04%           | 0.68%    | 0.00%    | 7.69% | 6.77%        | 1.42%         | 4.04%          | 16.00% |
+| u_prbsx (prbsx)                 | <0.01%     | 0.02%           | 0.00%    | 0.00%    | 0.04% | <0.01%       | 0.00%         | 0.02%          | 0.00%  |
+| u_register_file (register_file) | 0.10%      | 0.19%           | 0.00%    | 0.00%    | 0.67% | 0.10%        | 0.00%         | 0.19%          | 0.00%  |
+
+#### Timing
+
+![timing]
+
+#### Floorplan
+
+![floorplan]
 
 ## Dificultades encontradas
 
-Los mayores problemas estuvieron en:
+Tuvimos dificultades en los siguientes puntos:
 
-* No nos había quedado claro que podíamos retrasar los coeficientes para mejorar las prestaciones de timing des sistema. Esto nos ocasionó demoras, ya que empezamos probando el filtro en forma transpuesta, que tiene mejor desempeño en timing que el de forma directa. Lo que hay que tener en cuenta en ese caso, es que los coeficientes provenientes del LMS deben cargarse con un delay incremental para cada coeficiente. Es decir, el coeficiente 0 sin delay, el coeficiente 1 con un delay de 1, el coeficiente 2 con uno de 2, etc.
+* No nos había quedado claro que podíamos retrasar los coeficientes para mejorar las prestaciones de timing del sistema. Esto nos ocasionó demoras, ya que empezamos probando el filtro en forma transpuesta, que tiene mejor desempeño en timing que el de forma directa. Lo que hay que tener en cuenta en ese caso, es que los coeficientes provenientes del LMS deben cargarse con un delay incremental para cada coeficiente. Es decir, el coeficiente 0 sin delay, el coeficiente 1 con un delay de 1, el coeficiente 2 con uno de 2, etc. Finalmente, optamos por un filtro en forma directa, que simplifica el desarrollo.
 
 * En el enunciado, la fórmula del error dice e[n] = y[n] - ŷ[n]. Esto no es correcto, la señal de error se debe calcular como e[n] = ŷ[n] - y[n]. Esto causaba que el filtro arrancara bien, pero luego divergiera estupendamente, como es de suponer, ya que el signo del error está al revés.
 
-* Sin el pipeline, no nos fue posible cumplir con los timing constraints. Aunque fue una dificultad, no fue imprevista, ya que podía apreciarse que el lazo combinacional no era menor.
+* Sin el pipeline, no nos era posible cumplir con los timing constraints. Aunque fue una dificultad, no fue imprevista, ya que podía apreciarse que el lazo combinacional no era menor.
 
 [dsp]: img/dsp.png
 [ffe]: img/FFE.png
@@ -159,3 +180,5 @@ Los mayores problemas estuvieron en:
 [hw-coefs-chan1-step2]: img/hw-coefs-chan1-step2.png
 [py-coefs-chan1-step2]: img/py-coefs-chan1-step2.png
 
+[floorplan]: reports/device.png
+[timing]: reports/timing.png
